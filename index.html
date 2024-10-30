@@ -68,38 +68,15 @@
       
       </br>
       
-        <table>
-            <tr>
-                <th>Ticker</th>
-                <th>Company Name</th>
-                <th>Industry</th>
-                <th>Market Cap</th>
-            </tr>
-            <tr v-for="ticker in tickers" :key="ticker.Ticker">
-                <td>{{ ticker.Ticker }}</td>
-                <td>{{ ticker["Company Name"] }}</td>
-                <td>{{ ticker.Industry }}</td>
-                <td>{{ ticker["Market Cap"] }}</td>
-            </tr>
-  </table>
-   
-    </div>
-  
-   <script>
-        new Vue({
-            el: '#app',
-            data: {
-                tickers: []
-            },
-            mounted() {
-                fetch('tickers.json')
-                    .then(response => response.json())
-                    .then(data => {
-                        this.tickers = data;
-                    });
-            }
-        });
-    </script>
+      <div id="CSVTable"></div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//jquerycsvtotable.googlecode.com/files/jquery.csvToTable.js"></script>
+
+<script>
+$(function() {
+  $('#CSVTable').CSVToTable('tickers.csv');
+});
+</script>
   
 </body>
 </html>
