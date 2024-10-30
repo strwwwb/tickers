@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tickers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+      
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: left;
+        }
+       
+        h1 {
+           font-size: 2.3rem; 
+           margin-top: 10; 
+           font-weight: bold; 
+        }
+       
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 20px 0;
+            text-align: left;
+        }
+      
+        ::selection {
+            background: red;
+        }
+      
+      table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #fff;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #444;
+            font-weight: bold;
+        }
+      
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>stock tickers 🍓</h1>
+       
+        <p>
+            <em style="color: #c2c2c2; font-size: 0.9em;">A ticker is a symbol, a unique combination of letters and numbers that represent a particular stock or security listed on an exchange.</em>
+        </p>
+      
+      </br>
+      
+        <table>
+            <tr>
+                <th>Ticker</th>
+                <th>Company Name</th>
+                <th>Industry</th>
+                <th>Market Cap</th>
+            </tr>
+            <tr v-for="ticker in tickers" :key="ticker.Ticker">
+                <td>{{ ticker.Ticker }}</td>
+                <td>{{ ticker["Company Name"] }}</td>
+                <td>{{ ticker.Industry }}</td>
+                <td>{{ ticker["Market Cap"] }}</td>
+            </tr>
+  </table>
+   
+    </div>
+  
+   <script>
+        new Vue({
+            el: '#app',
+            data: {
+                tickers: []
+            },
+            mounted() {
+                fetch('tickers.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.tickers = data;
+                    });
+            }
+        });
+    </script>
+  
+</body>
+</html>
